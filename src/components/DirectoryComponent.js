@@ -10,12 +10,14 @@ export default class DirectoryComponent extends Component {
     }
   }
 
+  // methods
   onCampsiteSelect = campsite => {
     this.setState({
       selectedCampsite: campsite
     })
   }
 
+  // render
   render() {
     const directory = this.props.campsites.map(campsite => {
       return (

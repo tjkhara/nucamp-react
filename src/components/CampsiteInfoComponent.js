@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap"
 
 export default class CampsiteInfoComponent extends Component {
+  // Methods start
   renderCampsite = campsite => {
     return (
       <div className="col-md-5 m-1">
@@ -16,9 +17,39 @@ export default class CampsiteInfoComponent extends Component {
     )
   }
 
+  renderComments = comments => {
+    if (comments) {
+      return (
+        <div className="col-md-5 m-1">
+          <h4>Comments</h4>
+          {comments.map(comment => {
+            return (
+              <div key={comment.id}>
+                <p>{comment.text}</p>
+                <p>
+                  -- {comment.author}{" "}
+                  {new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", day: "2-digit" }).format(new Date(Date.parse(comment.date)))}
+                </p>
+              </div>
+            )
+          })}
+        </div>
+      )
+    }
+
+    return <div />
+  }
+  // Methods end
+
+  // Render method
   render() {
     if (this.props.campsite) {
-      return <div className="row">{this.renderCampsite(this.props.campsite)}</div>
+      return (
+        <>
+          <div className="row">{this.renderCampsite(this.props.campsite)}</div>
+          <div className="row">{this.renderComments(this.props.campsite.comments)}</div>
+        </>
+      )
     }
     return <div></div>
   }
