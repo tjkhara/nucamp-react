@@ -50,7 +50,7 @@ export default class CampsiteInfoComponent extends Component {
       return (
         <div className="container">
           <div className="row">
-            {/* Render campsites */}
+            {/* Render selected campsite */}
             {this.renderCampsite(this.props.campsite)}
             {/* Render comments */}
             {this.renderComments(this.props.campsite.comments)}
