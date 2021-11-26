@@ -3,6 +3,8 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap"
 
 export default class CampsiteInfoComponent extends Component {
   // Methods start
+
+  // *** Render the campsites ***
   renderCampsite = campsite => {
     return (
       <div className="col-md-5 m-1">
@@ -17,6 +19,7 @@ export default class CampsiteInfoComponent extends Component {
     )
   }
 
+  // *** Render the comments ***
   renderComments = comments => {
     if (comments) {
       return (
@@ -47,7 +50,9 @@ export default class CampsiteInfoComponent extends Component {
       return (
         <div className="container">
           <div className="row">
+            {/* Render campsites */}
             {this.renderCampsite(this.props.campsite)}
+            {/* Render comments */}
             {this.renderComments(this.props.campsite.comments)}
           </div>
         </div>

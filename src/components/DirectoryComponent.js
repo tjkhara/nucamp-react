@@ -5,6 +5,7 @@ export default class DirectoryComponent extends Component {
 
   // render
   render() {
+    // Prepare the html via map in this variable
     const directory = this.props.campsites.map(campsite => {
       return (
         <div className="col-md-5 m-1" key={campsite.id}>
@@ -18,6 +19,7 @@ export default class DirectoryComponent extends Component {
       )
     })
 
+    // Display the prepared html
     return (
       <div className="container">
         <div className="row">{directory}</div>

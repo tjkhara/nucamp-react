@@ -14,10 +14,20 @@ class Main extends Component {
   }
 
   // Methods
+
+  // Set the state to the selected campsite
   onCampsiteSelect = campsiteId => {
     this.setState({
       selectedCampsite: campsiteId
     })
+  }
+
+  // Get data of selected campsite
+  // Go through all the campsites and find the one where the campsite id is equal to the id of the
+  // selected campsite
+  // We have the id of the selected campsite in state
+  getSelectedCampsiteData = () => {
+    return this.state.campsites.filter(campsite => campsite.id === this.state.selectedCampsite)[0]
   }
 
   render() {
@@ -28,8 +38,10 @@ class Main extends Component {
             <NavbarBrand href="/">NuCamp</NavbarBrand>
           </div>
         </Navbar>
-        <Directory campsites={this.state.campsites} onClick={campsiteId => this.onCampsiteSelect(campsiteId)} />
-        <CampsiteInfo campsite={this.state.campsites.filter(campsite => campsite.id === this.state.selectedCampsite)[0]} />
+        {/* Pass down the campsites and pass the method that handles the click (stores id in state) */}
+        <Directory campsites={this.state.campsites} onClick={this.onCampsiteSelect} />
+        {/* Pass the clicked campsite data down to the component */}
+        <CampsiteInfo campsite={this.getSelectedCampsiteData()} />
       </div>
     )
   }
