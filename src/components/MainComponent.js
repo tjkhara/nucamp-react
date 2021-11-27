@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import { Navbar, NavbarBrand } from "reactstrap"
 import Directory from "./DirectoryComponent"
 import CampsiteInfo from "./CampsiteInfoComponent"
+import Header from "./HeaderComponent"
+import Footer from "./FooterComponent"
 import { CAMPSITES } from "../shared/campsites"
 
 class Main extends Component {
@@ -33,15 +35,14 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Navbar dark color="primary">
-          <div className="container">
-            <NavbarBrand href="/">NuCamp</NavbarBrand>
-          </div>
-        </Navbar>
+        {/* Add header component - nav bar etc */}
+        <Header />
         {/* Pass down the campsites and pass the method that handles the click (stores id in state) */}
         <Directory campsites={this.state.campsites} onClick={this.onCampsiteSelect} />
         {/* Pass the clicked campsite data down to the component */}
         <CampsiteInfo campsite={this.getSelectedCampsiteData()} />
+        {/* Add footer */}
+        <Footer />
       </div>
     )
   }
