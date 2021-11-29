@@ -12,7 +12,7 @@ const RenderDirectoryItem = ({ campsite }) => {
   )
 }
 
-const DirectoryComponent = ({ campsites, onClick }) => {
+const DirectoryComponent = ({ campsites }) => {
   // Prepare the html via map in this variable
   const directory = campsites.map(campsite => {
     return (
