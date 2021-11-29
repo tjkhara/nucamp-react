@@ -1,6 +1,7 @@
 import React from "react"
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap"
 
+// Presentational component
 const RenderCampsite = ({ campsite }) => {
   return (
     <div className="col-md-5 m-1">
@@ -15,6 +16,7 @@ const RenderCampsite = ({ campsite }) => {
   )
 }
 
+// Presentational component
 const RenderComments = ({ comments }) => {
   if (comments) {
     return (
@@ -38,7 +40,8 @@ const RenderComments = ({ comments }) => {
   return <div />
 }
 
-const CampsiteInfoComponent = ({ campsite }) => {
+// This component renders selected campsite and related comments
+const CampsiteInfoComponent = ({ campsite, comments }) => {
   if (campsite) {
     return (
       <div className="container">
@@ -47,7 +50,7 @@ const CampsiteInfoComponent = ({ campsite }) => {
           <RenderCampsite campsite={campsite} />
 
           {/* Render comments */}
-          <RenderComments comments={campsite.comments} />
+          <RenderComments comments={comments} />
         </div>
       </div>
     )

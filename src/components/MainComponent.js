@@ -4,6 +4,9 @@ import Header from "./HeaderComponent"
 import Footer from "./FooterComponent"
 import Home from "./HomeComponent"
 import Contact from "./ContactComponent"
+import CampsiteInfo from "./CampsiteInfoComponent"
+
+// React Router stuff
 import { Switch, Route, Redirect } from "react-router-dom"
 // Import data
 import { CAMPSITES } from "../shared/campsites"
@@ -37,6 +40,17 @@ class Main extends Component {
       )
     }
 
+    // Look through the state data for the id sent in params
+    // Match object is sent in via props
+    const CampsiteWithId = ({ match }) => {
+      return (
+        <CampsiteInfo
+          campsite={this.state.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
+          comments={this.state.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
+        />
+      )
+    }
+
     return (
       <div>
         <Header />
@@ -45,6 +59,8 @@ class Main extends Component {
           <Route path="/home" component={HomePage} />
           {/* Directory page */}
           <Route exact path="/directory" render={() => <Directory campsites={this.state.campsites} />} />
+          {/* Dynamic route for directory to display each item in directory on a separate page*/}
+          <Route path="/directory/:campsiteId" component={CampsiteWithId} />
           {/* Contact page */}
           <Route exact path="/contactus" component={Contact} />
           {/* This is like the default statement in switch */}
