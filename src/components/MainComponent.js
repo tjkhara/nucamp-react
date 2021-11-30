@@ -5,6 +5,7 @@ import Footer from "./FooterComponent"
 import Home from "./HomeComponent"
 import Contact from "./ContactComponent"
 import CampsiteInfo from "./CampsiteInfoComponent"
+import About from "./AboutComponent"
 
 // React Router stuff
 import { Switch, Route, Redirect } from "react-router-dom"
@@ -63,6 +64,8 @@ class Main extends Component {
           <Route path="/directory/:campsiteId" component={CampsiteWithId} />
           {/* Contact page */}
           <Route exact path="/contactus" component={Contact} />
+          {/* About Page */}
+          <Route exact path="/aboutus" render={() => <About partners={this.state.partners} />} />
           {/* This is like the default statement in switch */}
           <Redirect to="/home" />
         </Switch>
