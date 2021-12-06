@@ -56,13 +56,13 @@ class Main extends Component {
           {/* Home page */}
           <Route path="/home" component={HomePage} />
           {/* Directory page */}
-          <Route exact path="/directory" render={() => <Directory campsites={this.state.campsites} />} />
+          <Route exact path="/directory" render={() => <Directory campsites={this.props.campsites} />} />
           {/* Dynamic route for directory to display each item in directory on a separate page*/}
           <Route path="/directory/:campsiteId" component={CampsiteWithId} />
           {/* Contact page */}
           <Route exact path="/contactus" component={Contact} />
           {/* About Page */}
-          <Route exact path="/aboutus" render={() => <About partners={this.state.partners} />} />
+          <Route exact path="/aboutus" render={() => <About partners={this.props.partners} />} />
           {/* This is like the default statement in switch */}
           <Redirect to="/home" />
         </Switch>
