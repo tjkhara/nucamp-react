@@ -31,68 +31,30 @@ class CommentForm extends Component {
           <ModalHeader>Login</ModalHeader>
           <ModalBody>
             <LocalForm>
-              <Row className="form-group">
-                <Label htmlFor="firstName" md={2}>
-                  First Name
-                </Label>
-                <Col md={10}>
-                  <Control.text model=".firstName" id="firstName" name="firstName" placeholder="First Name" className="form-control" />
-                </Col>
-              </Row>
-              <Row className="form-group">
-                <Label htmlFor="lastName" md={2}>
-                  Last Name
-                </Label>
-                <Col md={10}>
-                  <Control.text model=".lastName" id="lastName" name="lastName" placeholder="Last Name" className="form-control" />
-                </Col>
-              </Row>
-              <Row className="form-group">
-                <Label htmlFor="phoneNum" md={2}>
-                  Phone
-                </Label>
-                <Col md={10}>
-                  <Control.text model=".phoneNum" id="phoneNum" name="phoneNum" placeholder="Phone number" className="form-control" />
-                </Col>
-              </Row>
-              <Row className="form-group">
-                <Label htmlFor="email" md={2}>
-                  Email
-                </Label>
-                <Col md={10}>
-                  <Control.text model=".email" id="email" name="email" placeholder="Email" className="form-control" />
-                </Col>
-              </Row>
-              <Row className="form-group">
-                <Col md={{ size: 4, offset: 2 }}>
-                  <div className="form-check">
-                    <Label check>
-                      <Control.checkbox model=".agree" name="agree" className="form-check-input" /> <strong>May we contact you?</strong>
-                    </Label>
-                  </div>
-                </Col>
-                <Col md={4}>
-                  <Control.select model=".contactType" name="contactType" className="form-control">
-                    <option>By Phone</option>
-                    <option>By Email</option>
-                  </Control.select>
-                </Col>
-              </Row>
-              <Row className="form-group">
-                <Label htmlFor="feedback" md={2}>
-                  Your Feedback
-                </Label>
-                <Col md={10}>
-                  <Control.textarea model=".feedback" id="feedback" name="feedback" rows="12" className="form-control" />
-                </Col>
-              </Row>
-              <Row className="form-group">
-                <Col md={{ size: 10, offset: 2 }}>
-                  <Button type="submit" color="primary">
-                    Send Feedback
-                  </Button>
-                </Col>
-              </Row>
+              <div className="form-group">
+                <Label htmlFor="rating">Rating</Label>{" "}
+                <Control.select model=".rating" id="rating" name="rating" className="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </Control.select>
+              </div>
+
+              <div className="form-group">
+                <Label htmlFor="author">Last Name</Label>
+                <Control.text model=".author" id="author" name="author" placeholder="author" className="form-control" />
+              </div>
+
+              <div className="form-group">
+                <Label htmlFor="text">Comment</Label>
+                <Control.textarea model=".text" id="text" name="text" rows="6" className="form-control" />
+              </div>
+
+              <Button type="submit" value="submit" color="primary">
+                Submit
+              </Button>
             </LocalForm>
           </ModalBody>
         </Modal>
