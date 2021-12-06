@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Button, Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Modal, ModalHeader, ModalBody, Col, Row, Label } from "reactstrap"
 import { Link } from "react-router-dom"
-import { Control, LocalForm } from "react-redux-form"
+import { Control, LocalForm, Errors, isRequired } from "react-redux-form"
 
 class CommentForm extends Component {
   constructor(props) {
