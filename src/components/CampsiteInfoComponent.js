@@ -1,14 +1,101 @@
 import React, { Component } from "react"
-import { Button, Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem } from "reactstrap"
+import { Button, Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Modal, ModalHeader, ModalBody, Col, Row, Label } from "reactstrap"
 import { Link } from "react-router-dom"
+import { Control, LocalForm } from "react-redux-form"
 
 class CommentForm extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isModalOpen: false
+    }
+
+    this.toggleModal = this.toggleModal.bind(this)
+  }
+
+  toggleModal() {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen
+    })
+  }
+
   render() {
     return (
       <div>
-        <Button type="submit" color="primary">
-          Submit Comment
+        <Button type="submit" outline onClick={this.toggleModal}>
+          {" "}
+          <i className="fa fa-lg fa-pencil" /> Submit Comment
         </Button>
+        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+          <ModalHeader>Login</ModalHeader>
+          <ModalBody>
+            <LocalForm>
+              <Row className="form-group">
+                <Label htmlFor="firstName" md={2}>
+                  First Name
+                </Label>
+                <Col md={10}>
+                  <Control.text model=".firstName" id="firstName" name="firstName" placeholder="First Name" className="form-control" />
+                </Col>
+              </Row>
+              <Row className="form-group">
+                <Label htmlFor="lastName" md={2}>
+                  Last Name
+                </Label>
+                <Col md={10}>
+                  <Control.text model=".lastName" id="lastName" name="lastName" placeholder="Last Name" className="form-control" />
+                </Col>
+              </Row>
+              <Row className="form-group">
+                <Label htmlFor="phoneNum" md={2}>
+                  Phone
+                </Label>
+                <Col md={10}>
+                  <Control.text model=".phoneNum" id="phoneNum" name="phoneNum" placeholder="Phone number" className="form-control" />
+                </Col>
+              </Row>
+              <Row className="form-group">
+                <Label htmlFor="email" md={2}>
+                  Email
+                </Label>
+                <Col md={10}>
+                  <Control.text model=".email" id="email" name="email" placeholder="Email" className="form-control" />
+                </Col>
+              </Row>
+              <Row className="form-group">
+                <Col md={{ size: 4, offset: 2 }}>
+                  <div className="form-check">
+                    <Label check>
+                      <Control.checkbox model=".agree" name="agree" className="form-check-input" /> <strong>May we contact you?</strong>
+                    </Label>
+                  </div>
+                </Col>
+                <Col md={4}>
+                  <Control.select model=".contactType" name="contactType" className="form-control">
+                    <option>By Phone</option>
+                    <option>By Email</option>
+                  </Control.select>
+                </Col>
+              </Row>
+              <Row className="form-group">
+                <Label htmlFor="feedback" md={2}>
+                  Your Feedback
+                </Label>
+                <Col md={10}>
+                  <Control.textarea model=".feedback" id="feedback" name="feedback" rows="12" className="form-control" />
+                </Col>
+              </Row>
+              <Row className="form-group">
+                <Col md={{ size: 10, offset: 2 }}>
+                  <Button type="submit" color="primary">
+                    Send Feedback
+                  </Button>
+                </Col>
+              </Row>
+            </LocalForm>
+          </ModalBody>
+        </Modal>
       </div>
     )
   }
@@ -45,6 +132,8 @@ const RenderComments = ({ comments }) => {
             </div>
           )
         })}
+        {/* Comment Form */}
+        <CommentForm />
       </div>
     )
   }
