@@ -1,6 +1,18 @@
-import React from "react"
-import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem } from "reactstrap"
+import React, { Component } from "react"
+import { Button, Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem } from "reactstrap"
 import { Link } from "react-router-dom"
+
+class CommentForm extends Component {
+  render() {
+    return (
+      <div>
+        <Button type="submit" color="primary">
+          Submit Comment
+        </Button>
+      </div>
+    )
+  }
+}
 
 // Presentational component
 const RenderCampsite = ({ campsite }) => {
