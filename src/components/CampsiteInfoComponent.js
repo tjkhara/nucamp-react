@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Button, Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Modal, ModalHeader, ModalBody, Col, Row, Label } from "reactstrap"
 import { Link } from "react-router-dom"
 import { Control, LocalForm, Errors, isRequired } from "react-redux-form"
+import { Loading } from "./LoadingComponent"
 
 const required = val => val && val.length
 const maxLength = len => val => !val || val.length <= len
@@ -131,8 +132,7 @@ const RenderComments = ({ comments, addComment, campsiteId }) => {
             <div key={comment.id}>
               <p>{comment.text}</p>
               <p>
-                -- {comment.author}{" "}
-                {new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", day: "2-digit" }).format(new Date(Date.parse(comment.date)))}
+                -- {comment.author} {new Intl.DateTimeFormat("en-US", { year: "numeric", month: "short", day: "2-digit" }).format(new Date(Date.parse(comment.date)))}
               </p>
             </div>
           )
@@ -147,7 +147,28 @@ const RenderComments = ({ comments, addComment, campsiteId }) => {
 }
 
 // This component renders selected campsite and related comments
-const CampsiteInfoComponent = ({ campsite, comments, addComment }) => {
+const CampsiteInfoComponent = ({ campsite, comments, addComment, isLoading, errMess }) => {
+  if (isLoading) {
+    return (
+      <div className="container">
+        <div className="row">
+          <Loading />
+        </div>
+      </div>
+    )
+  }
+  if (errMess) {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <h4>{errMess}</h4>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   if (campsite) {
     return (
       <div className="container">
