@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+
+// Components
 import Directory from "./DirectoryComponent"
 import Header from "./HeaderComponent"
 import Footer from "./FooterComponent"
@@ -13,6 +15,7 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom"
 // Redux stuff
 import { connect } from "react-redux"
 import { addComment, fetchCampsites } from "../redux/ActionCreators"
+import { actions } from "react-redux-form"
 
 const mapStateToProps = state => {
   return {
@@ -25,7 +28,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   addComment: (campsiteId, rating, author, text) => addComment(campsiteId, rating, author, text),
-  fetchCampsites: () => fetchCampsites()
+  fetchCampsites: () => fetchCampsites(),
+  resetFeedbackForm: () => actions.reset("feedbackForm")
 }
 
 class Main extends Component {
@@ -74,7 +78,7 @@ class Main extends Component {
           {/* Dynamic route for directory to display each item in directory on a separate page*/}
           <Route path="/directory/:campsiteId" component={CampsiteWithId} />
           {/* Contact page */}
-          <Route exact path="/contactus" component={Contact} />
+          <Route exact path="/contactus" render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
           {/* About Page */}
           <Route exact path="/aboutus" render={() => <About partners={this.props.partners} />} />
           {/* This is like the default statement in switch */}
